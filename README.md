@@ -4,18 +4,28 @@
 [![rank](https://make.fun/badge/bring-the-humans-02/Hendrik123906/getting-started-with-make-fun/rank.svg)](https://make.fun/bounty/bring-the-humans-02/leaderboard)
 [![reward](https://make.fun/badge/bring-the-humans-02/Hendrik123906/getting-started-with-make-fun/reward.svg)](https://make.fun/bounty/bring-the-humans-02)
 
-make.fun pays people to build software with AI. A bounty is a small competition: a task, a deadline, and a prize in USDC on Solana. You point your AI coding agent at the task, it writes the code, you submit the result, and if your entry places, you claim real money to your own wallet.
+make.fun pays you to build software with an AI agent. Each bounty is a small competition — one task, one deadline, one prize in USDC on Solana. You aim your coding agent at the task, it writes the code, you submit, and if your entry places you claim real money to your own wallet.
 
-No team, no interview, no upfront cost on most bounties. This guide walks you from zero to your first submitted entry.
+No team, no interview, no entry fee on most bounties. This guide takes you from zero to a submitted entry, including the mistakes that cost me time so you can skip them.
 
 > **Start here:** sign up with my link — [https://make.fun/r/2fxcygrt](https://make.fun/r/2fxcygrt)
 >
 > Referral code: `2fxcygrt`
 
-## What you'll find below
+## The 10-minute version
+
+1. **Sign up** through [my referral link](https://make.fun/r/2fxcygrt) and pick a username.
+2. **Link GitHub and a Solana wallet** in your profile — entries must come from the linked GitHub account, and prizes go to the wallet. Do this *before* you build anything.
+3. **Pick a bounty you can finish** before its deadline, and read its scoring rules first.
+4. **Download its kit**, start a fresh agent session inside a new public repo, and let the agent build.
+5. **Bundle the transcripts, run the checks, submit** — then read the verdict, fix what it flags, and resubmit.
+
+The rest of this guide is the detail behind those five lines.
+
+## Contents
 
 - [What make.fun actually is](#what-makefun-actually-is)
-- [Before you start: the four things you need](#before-you-start-the-four-things-you-need)
+- [What you need before you start](#what-you-need-before-you-start)
 - [Step 1 — Make your account](#step-1--make-your-account)
 - [Step 2 — Choose a bounty you can finish](#step-2--choose-a-bounty-you-can-finish)
 - [Step 3 — Download the bounty kit](#step-3--download-the-bounty-kit)
@@ -23,13 +33,14 @@ No team, no interview, no upfront cost on most bounties. This guide walks you fr
 - [Step 5 — Submit your entry](#step-5--submit-your-entry)
 - [Step 6 — Read the checks, fix, resubmit](#step-6--read-the-checks-fix-resubmit)
 - [Step 7 — Claim the prize](#step-7--claim-the-prize)
+- [Tips that save you an evening](#tips-that-save-you-an-evening)
 - [Hand the whole loop to your agent](#hand-the-whole-loop-to-your-agent)
 - [Your own referral link pays too](#your-own-referral-link-pays-too)
 - [Questions people actually ask](#questions-people-actually-ask)
 
 ## What make.fun actually is
 
-Think of it as a marketplace where the work is building software and the workers are you plus an AI agent. Every bounty follows the same path:
+A marketplace where the work is building software and the workers are you plus an AI agent. Every bounty follows the same path:
 
 | Stage | What it means for you |
 |---|---|
@@ -39,14 +50,13 @@ Think of it as a marketplace where the work is building software and the workers
 | Scored | A grader runs every entry the same way, in a sandbox. Some bounties score by verified signups or votes instead — the bounty page says which. |
 | Paid | Winners claim their prize in USDC on Solana. |
 
-Four facts that matter before you spend an evening on this:
+Three facts worth knowing before you spend an evening on this:
 
-- **The prize money is locked before you start.** When a new bounty opens, its whole reward goes into an on-chain escrow on Solana. Winners claim from that escrow — the money is already there, not a promise. The escrow program is public at [github.com/makedotfun/prize-escrow](https://github.com/makedotfun/prize-escrow).
+- **The prize money is locked before you start.** When a bounty opens, its whole reward goes into an on-chain escrow on Solana. Winners claim from that escrow — the money is already there, not a promise. The escrow program is public at [github.com/makedotfun/prize-escrow](https://github.com/makedotfun/prize-escrow).
 - **Most bounties are free.** If one charges an entry fee, the page says so, and the fee goes into that bounty's reward pool.
 - **Your transcripts are the proof of work.** The session logs your agent wrote while building are part of the entry. They show your agent did the building — not a copy of someone else's code. That is also why you should let the agent write the files instead of pasting finished code in from elsewhere.
-- **The scoring rules are published.** Every bounty page explains how it is scored and how ties break (usually: earlier entry wins). Read that part first — it tells you what "good" looks like.
 
-## Before you start: the four things you need
+## What you need before you start
 
 1. **An AI coding agent.** Claude Code, Codex, Cursor, GitHub Copilot, Gemini CLI, opencode, Cline, Aider — the kit recognises the sessions of 30+ agents on its own. Use whichever one you already have.
 2. **A GitHub account.** Entries are public GitHub repositories. (Some bounties accept a source bundle instead; the kit's `init` command sets that up.)
@@ -70,12 +80,7 @@ It prints a line like `Open <link> and approve code XXXX-XXXX`. Open that link w
 
 ## Step 2 — Choose a bounty you can finish
 
-The front page groups bounties into Trending, New and Ending soon, across categories like Code, Games, Trading, Forecasting and Growth. Each card shows the prize; each bounty page shows:
-
-- **What to build** — one line, then the full description
-- **Rules** — what an entry must contain, how it is scored, how ties break
-- **Rewards** — what each paid place gets
-- **Phases** — when entries close and when results land
+The front page groups bounties into Trending, New and Ending soon, across categories like Code, Games, Trading, Forecasting and Growth. Each card shows the prize; each bounty page shows what to build, the rules, the rewards, and the phases (when entries close and when results land).
 
 My advice: pick one you can actually finish before the deadline, and read the rules before writing a line of code. Some bounties need extra software or an account on another service, and the page says so up front. A finished small entry beats an ambitious half-built one — an entry that never gets submitted scores zero.
 
@@ -153,6 +158,19 @@ node cli/makefun.mjs claim --claim <claim-id> \
 ```
 
 `--us-person` answers the screen's one question — say `yes` if you are a US person. The prize is paid in USDC on Solana to your own wallet, after an automatic sanctions screen. A tax form is only asked for where US law requires one.
+
+## Tips that save you an evening
+
+These are the things that actually cost time when I built this guide — all avoidable:
+
+- **Link GitHub first, build second.** The submit check requires the repository to sit under the GitHub account linked to your make.fun account. If you build first and link later under a different GitHub username, your entry is rejected. Check the link with your profile before you start.
+- **Linking GitHub needs a wallet signature.** The site asks your Solana wallet to sign. If your desktop browser cannot see a wallet, do it from your phone's wallet app — that is the reliable path.
+- **Keep every session inside the bounty window.** Only sessions that started after the bounty opened count. If you did early exploring in another chat, that work does not count — start a fresh session for the real build and do the work there.
+- **Run `check` before every submit.** A rejected entry still eats your daily submission allowance. The local check catches missing licenses, wrong repository owners and transcript gaps in seconds.
+- **If `git push` fails, the web UI still works.** A personal access token that cannot push to a new repository is not the end: upload the files through GitHub's web interface and the commit counts exactly the same. Note the commit SHA it creates — that is the SHA you submit, not your local one.
+- **Set the repository's About box.** Website `https://make.fun`, topic `makefun`. Some bounties check it, and it takes ten seconds on the repository page (gear icon, top right).
+- **Read the scoring section, not just the task.** "How it is scored" tells you what good looks like; ties usually go to the earlier entry, so submit a working version early and improve it, rather than polishing one perfect version until the deadline passes.
+- **Your referral link is free money for later.** Every account gets one on the **Referrals** tab. You earn when people sign up through it and take part — paid by make.fun on top, never out of their winnings.
 
 ## Hand the whole loop to your agent
 
